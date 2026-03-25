@@ -14,19 +14,19 @@ public class ProjetoService {
     @Autowired
     private ProjetoRepository projetoRepository;
 
-    public List<ProjetoModel> findAll(){
+    public List<ProjetoModel> buscarTodosOsProjetos(){
         return  projetoRepository.findAll();
     }
 
-    public ProjetoModel criarPessoa(ProjetoModel projetoModel){
+    public ProjetoModel criarProjeto(ProjetoModel projetoModel){
         return  projetoRepository.save(projetoModel);
     }
 
-    public Optional<ProjetoModel> buscarid(Long id){
+    public Optional<ProjetoModel> buscarProjetoId(Long id){
         return  projetoRepository.findById(id);
     }
 
-    public ProjetoModel atualizar(Long id, ProjetoModel projetoModel){
+    public ProjetoModel atualizarProjeto(Long id, ProjetoModel projetoModel){
         ProjetoModel model = projetoRepository.findById(id).get();
         model.setDataInicio(projetoModel.getDataInicio());
         model.setNome(projetoModel.getNome());
@@ -34,7 +34,7 @@ public class ProjetoService {
         return projetoRepository.save(model);
     }
 
-    public void deletar(Long id){
+    public void deletarProjeto(Long id){
         projetoRepository.deleteById(id);
     }
 

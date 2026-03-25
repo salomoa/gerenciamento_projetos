@@ -19,14 +19,14 @@ public class ProjetoController {
     private ProjetoService projetoService;
 
     @GetMapping
-        public ResponseEntity<List<ProjetoModel> > findAll(){
-          List<ProjetoModel> requeste = projetoService.findAll();
+        public ResponseEntity<List<ProjetoModel> > buscarTodosOsProjetos(){
+          List<ProjetoModel> requeste = projetoService.buscarTodosOsProjetos();
         return ResponseEntity.ok().body(requeste);
     }
 
     @PostMapping
-    public ResponseEntity <ProjetoModel> criarPessoa(@RequestBody ProjetoModel projetoModel){
-        ProjetoModel requeste = projetoService.criarPessoa(projetoModel);
+    public ResponseEntity <ProjetoModel> criarProjetos(@RequestBody ProjetoModel projetoModel){
+        ProjetoModel requeste = projetoService.criarProjeto(projetoModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("/{id}").buildAndExpand(projetoModel.getId())
                 .toUri();
@@ -34,23 +34,20 @@ public class ProjetoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar (@PathVariable Long id){
-        projetoService.deletar(id);
+    public ResponseEntity<?> deletarProjetos(@PathVariable Long id){
+        projetoService.deletarProjeto(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
-    public Optional<ProjetoModel> buscarId(@PathVariable Long id){
-        return  projetoService.buscarid(id);
+    public Optional<ProjetoModel> buscarProjetoPorId(@PathVariable Long id){
+        return  projetoService.buscarProjetoId(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity <ProjetoModel> atualizar(@PathVariable Long id, @RequestBody ProjetoModel ProjetoModel){
-        ProjetoModel requeste = projetoService.atualizar(id, ProjetoModel);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-                .path("/{id}").buildAndExpand(ProjetoModel.getId())
-                .toUri();
-        return  ResponseEntity.created(uri).body(requeste);
+    public ResponseEntity <ProjetoModel> atualizarProjetos(@PathVariable Long id, @RequestBody ProjetoModel ProjetoModel){
+        ProjetoModel requeste = projetoService.atualizarProjeto(id, ProjetoModel);
+        return  ResponseEntity.ok().body(requeste);
 
     }
 

@@ -11,7 +11,9 @@ public class ProjetoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name")
     private String nome;
+    @Column(name = "data_i")
     private LocalDate dataInicio;
     private LocalDate dataFim;
 
@@ -23,7 +25,6 @@ public class ProjetoModel {
         this.id = id;
     }
 
-    @Column(name = "data_f_i")
     public LocalDate getDataInicio() { return dataInicio; }
 
     public void setDataInicio(LocalDate dataInicio) { this.dataInicio = dataInicio; }
@@ -32,7 +33,6 @@ public class ProjetoModel {
 
     public void setDataFim(LocalDate dataFim) { this.dataFim = dataFim; }
 
-    @Column(name = "name")
     public String getNome() { return nome; }
 
     public void setNome(String nome) { this.nome = nome; }
